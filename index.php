@@ -55,7 +55,11 @@ include("functions/functions.php");
             </div>
 
 
-            <div id="content-area">content</div>
+            <div id="content-area">
+                <div id="product_box">
+                    <?php getPro(); ?>
+                </div>
+            </div>
 
         </div>
 

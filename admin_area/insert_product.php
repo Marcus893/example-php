@@ -74,7 +74,7 @@ include("includes/db.php");
             </tr>
             <tr>
                 <td align="center">Product Description:</td>
-                <td><textarea cols="20" rows="10" name="des" required></textarea></td>
+                <td><textarea cols="20" rows="10" name="des"></textarea></td>
             </tr>
             <tr>
                 <td align="center">Product keywords:</td>
@@ -102,6 +102,14 @@ include("includes/db.php");
         $img = $_FILES['image']['name'];
         $img_tmp = $_FILES['image']['tmp_name'];
 
+        move_uploaded_file($img_tmp,"product_images/$img");
+
         $insert_product = "insert into products (brand,title,cat,price,des,keywords,image) values ('$brand','$title','$cat','$price','$description','$keywords','$img')";
+
+        $insert = mysqli_query($connection, $insert_product);
+        if($insert) {
+            echo "<script>alert('Product has been inserted!')</script>";
+            echo "<script>window.open('insert_product.php', '_self')</script>";
+        }
     }
 ?>

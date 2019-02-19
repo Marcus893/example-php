@@ -33,4 +33,27 @@ function getBrands() {
     }
 }
 
+function getPro() {
+    global $connection;
+    $get_pro = "select * from products order by rand() limit 6";
+    $run_pro = mysqli_query($connection, $get_pro);
+
+    while($row_pro=mysqli_fetch_array($run_pro)) {
+        $pro_id = $row_pro['product_id'];
+        $pro_brand = $row_pro['brand'];
+        $pro_title = $row_pro['title'];
+        $pro_cat = $row_pro['cat'];
+        $pro_price = $row_pro['price'];
+        $pro_des = $row_pro['des'];
+        $pro_keywords = $row_pro['keywords'];
+        $pro_image = $row_pro['image'];
+
+        echo "
+            <div id='single_product'>
+                <h3>$pro_title</h3>
+                <img src='admin_area/product_images/$pro_image' width='180' height='180' />
+            </div>
+        ";
+    }
+}
 ?>
