@@ -1,6 +1,8 @@
 <?php
 $connection = mysqli_connect("localhost", "root", "", "electronics");
 
+// getting the user ip address
+
 function getIp() {
     $ip = $_SERVER['REMOTE_ADDR'];
  
@@ -13,6 +15,8 @@ function getIp() {
     return $ip;
 }
 
+
+// creating the cart
 function cart() {
     if(isset($_GET['add_cart'])){
         global $connection;
@@ -32,7 +36,41 @@ function cart() {
     }
 }
 
+// getting the total added items 
+function total() {
+  
+    global $connection;
+    $ip = getIp();
+    $get_items = "select * from cart where ip_add='$ip'";
+    $run_items = mysqli_query($connection, $get_items);
+    $count_items = mysqli_num_rows($run_items);
+    
 
+    echo $count_items;
+}
+
+
+// getting the total price of the items in the cart 
+function total_price() {
+    $total = 0;
+    global $connection;
+
+    $ip = getIp();
+    $sel_price = "select * from cart where ip_add='$ip'";
+    $run_price = mysqli_query($connection, $sel_price);
+    while($p_price=mysqli_fetch_array($run_price)) {
+       $pro_id = $p_price['p_id'];
+       $pro_price = "select * from products where product_id='$pro_id'";
+       $run_pro_price = mysqli_query($connection,$pro_price);
+
+       while ($pp_price = mysqli_fetch_array($run_pro_price)) {
+           $product_price = array($pp_price['price']);
+           $values = array_sum($product_price);
+           $total += $values;
+       }
+    }
+    echo '$ ' . $total;
+}
 
 
 

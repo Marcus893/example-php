@@ -48,13 +48,7 @@ include("functions/functions.php");
                    <?php getCats() ?>
                 </ul>
 
-                <div id="sidebar-title">Brands</div>
-                <ul id="cats">
-                    <?php getBrands(); ?>
-                    
-                </ul>
-                
-            </div>
+        </div>
 
 
             <div id="content-area">
@@ -64,14 +58,12 @@ include("functions/functions.php");
                         
                     <?php
                     if(!isset($_SESSION['email'])) {
-                        echo "<b>Welcome:</b>" . $_SESSION['email'] . "<b style='color:yellow;'>Your</b>";
-                    } else {
-                        echo "<b>Welcome Guest</b>";
-                    }
+                        echo "<b>Welcome:</b>" . $_SESSION['email'];
+                    } 
                     ?>
     
                         
-                         <b style="color:yellow">Shopping Cart</b> Total Items: <?php echo total(); ?> Total Price: <?php total_price(); ?><a href="cart.php" style="color:yellow;">Go to cart</a>
+                        
 
                         <?php 
                         if(!isset($_SESSION['email'])) {
@@ -88,9 +80,6 @@ include("functions/functions.php");
             </div>
                 <div id="product-box">
 
-                    <?php getPro(); ?>
-                    <?php getCatPro(); ?>
-                    <?php getBrandPro(); ?>
                 </div>
             </div>
 
