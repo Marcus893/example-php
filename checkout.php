@@ -63,7 +63,7 @@ include("functions/functions.php");
                     <span style="float:right; font-size:18px;">
                         
                     <?php
-                    if(!isset($_SESSION['email'])) {
+                    if(isset($_SESSION['email'])) {
                         echo "<b>Welcome:</b>" . $_SESSION['email'] . "<b style='color:yellow;'>Your</b>";
                     } else {
                         echo "<b>Welcome Guest</b>";

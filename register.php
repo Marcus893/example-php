@@ -94,7 +94,7 @@ include("includes/db.php");
 
                         <tr>
                             <td align="right">Image:</td>
-                            <td><input type="file" name="c_image"></td>
+                            <td><input type="file" name="c_image" /></td>
                         </tr>
 
                         <tr>
@@ -130,7 +130,7 @@ include("includes/db.php");
 
                         <tr align="center">
                            
-                            <td><input type="submit" name="register" value="submit"></td>
+                            <td><input type="submit" name="register" value="submit" /></td>
                         </tr>
 
                     </table>
