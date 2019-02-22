@@ -1,0 +1,46 @@
+body {
+    background: skyblue;
+}
+
+.main_wrapper {
+    width: 1000px;
+    height: auto;
+    margin: auto;
+}
+
+#header {
+    text-align: center;
+    border-bottom: 5px groove orange;
+}
+
+#left {
+    width: 795px;
+    height: 800px;
+    background: orange;
+    float: left;
+}
+
+#right {
+    width: 200px;
+    height: 800px;
+    float: right;
+    border-left: 5px groove orange;
+
+}
+
+#right a {
+    text-decoration: none; 
+    color: white;
+    text-align: left;
+    font-size: 18px;
+    font-family: Palatino;
+    padding: 6px;
+    margin: 6px;
+    display: block;
+}
+
+#right a:hover {
+    text-decoration: underline; 
+    font-weight: bolder;
+    color: orange;
+}

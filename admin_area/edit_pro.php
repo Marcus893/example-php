@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <?php 
 include("includes/db.php");
+if(isset($_GET['edit_pro'])) {
+    $get_id = $_GET['edit_pro'];
+
+    $get_pro = "select * from products where product_id='$get_id'";
+    $run_pro = mysqli_query($connection, $get_pro);
+ 
+
+    $row_pro=mysqli_fetch_array($run_pro);
+        $pro_id = $row_pro['product_id'];
+        $pro_title = $row_pro['title'];
+        $pro_image = $row_pro['image'];
+        $pro_price = $row_pro['price'];
+        $pro_desc = $row_pro['des'];
+        $pro_keywords = $row_pro['keywords'];
+        $pro_category = $row_pro['cat'];
+        $pro_brand = $row_pro['brand'];
+       
+}
 ?>
 <html>
 <head>
@@ -15,19 +33,19 @@ include("includes/db.php");
     <form action="insert_product.php" method="post" enctype="multipart/form-data">
         <table align="center" width="1000px">
             <tr align="center">
-                <td colspan="8"><h2>Add New Product</h2></td>
+                <td colspan="8"><h2>Edit This Product</h2></td>
             </tr>
 
             <tr>
                 <td align="center">Product Title:</td>
-                <td><input type="text" name="title" required/></td>
+                <td><input type="text" name="title" value="<?php echo $pro_title; ?>"/></td>
             </tr>
 
             <tr>
                 <td align="center">Product Category:</td>
                 <td>
                     <select name="category" id="" required>
-                        <option disabled>Select a Category</option>
+                        <option disabled><?php echo $pro_category ?></option>
                         <?php 
                                 $get_cats = "select * from categories";
                                 $run_cats = mysqli_query($connection, $get_cats);
@@ -47,7 +65,7 @@ include("includes/db.php");
                 <td align="center">Product Brand:</td>
                 <td>
                 <select name="brand" id="">
-                        <option disabled>Select a Brand</option>
+                        <option disabled><?php echo $pro_brand; ?></option>
                         <?php 
                             $get_brands = "select * from brands";
                             $run_brands = mysqli_query($connection, $get_brands);
@@ -66,23 +84,23 @@ include("includes/db.php");
             </tr>
             <tr>
                 <td align="center">Product Image:</td>
-                <td><input type="file" name="image"/></td>
+                <td><input type="file" name="image"/><img src="product_images/<?php echo $pro_image; ?>" width="60" height="60"/></td>
             </tr>
             <tr>
                 <td align="center">Product Price:</td>
-                <td><input type="text" name="price" required/></td>
+                <td><input type="text" name="price" value="<?php echo $pro_price; ?>"/></td>
             </tr>
             <tr>
                 <td align="center">Product Description:</td>
-                <td><textarea cols="20" rows="10" name="des"></textarea></td>
+                <td><textarea cols="20" rows="10" name="des" ><?php echo $pro_desc; ?></textarea></td>
             </tr>
             <tr>
                 <td align="center">Product keywords:</td>
-                <td><input type="text" name="keywords" required/></td>
+                <td><input type="text" name="keywords" value="<?php echo $pro_keywords; ?>"/></td>
             </tr>
 
             <tr align="center">
-                <td colspan="8"><input type="submit" name="insert_product" value="Submit" /></td>
+                <td colspan="8"><input type="submit" name="update_product" value="Update" /></td>
             </tr>
         </table>
 
