@@ -1,3 +1,11 @@
+<?php 
+session_start();
+if(!isset($_SESSION['user_email'])) {
+    echo "<script>window.open('login.php?not_admin=You are not an Admin', '_self')</script>";
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,6 +45,14 @@
 
                 if(isset($_GET['edit_pro'])) {
                     include("edit_pro.php");
+                }
+
+                if(isset($_GET['insert_cat'])) {
+                    include("insert_cat.php");
+                }
+
+                if(isset($_GET['view_cats'])) {
+                    include("view_cats.php");
                 }
             ?>
         </div>

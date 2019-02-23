@@ -30,7 +30,7 @@ if(isset($_GET['edit_pro'])) {
     <script src="main.js"></script>
 </head>
 <body bgcolor="skyblue">
-    <form action="insert_product.php" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data">
         <table align="center" width="1000px">
             <tr align="center">
                 <td colspan="8"><h2>Edit This Product</h2></td>
@@ -109,7 +109,10 @@ if(isset($_GET['edit_pro'])) {
 </html>
 
 <?php 
-    if(isset($_POST['insert_product'])) {
+    if(isset($_POST['update_product'])) {
+
+        $update_id = $pro_id;
+
         $title = $_POST['title'];
         $cat = $_POST['category'];
         $brand = $_POST['brand'];
@@ -122,13 +125,13 @@ if(isset($_GET['edit_pro'])) {
 
         move_uploaded_file($img_tmp,"product_images/$img");
 
-        $insert_product = "insert into products (brand,title,cat,price,des,keywords,image) values ('$brand','$title','$cat','$price','$description','$keywords','$img')";
+        $update_product = "update products set cat='$cat', brand='$brand', title='$title', price='$price', des='$description', image='$img', keywords='$keywords' where product_id='$update_id'";
 
-        $insert = mysqli_query($connection, $insert_product);
+        $run_product = mysqli_query($connection, $update_product);
 
-        if($insert) {
-            echo "<script>alert('Product has been inserted!')</script>";
-            echo "<script>window.open('index.php?insert_product', '_self')</script>";
+        if($run_product) {
+            echo "<script>alert('Product has been updated!')</script>";
+            echo "<script>window.open('index.php?view_products', '_self')</script>";
         }
     }
 ?>
